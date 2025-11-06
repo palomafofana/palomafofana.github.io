@@ -1,44 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Paloma Fofana</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paloma F. | Portfolio</title>
   <style>
     body {
-      font-family: "Segoe UI", Arial, sans-serif;
-      background: linear-gradient(to bottom right, #90e0ef, #caf0f8);
-      color: #03045e;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fdfdfd;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(90deg, #6a11cb, #2575fc);
+      color: white;
       text-align: center;
-      padding: 80px 20px;
+      padding: 60px 20px;
     }
-    h1 {
+
+    header h1 {
+      margin: 0;
       font-size: 3em;
-      margin-bottom: 10px;
     }
-    p {
+
+    header p {
       font-size: 1.2em;
-      max-width: 600px;
+      margin-top: 10px;
+    }
+
+    section {
+      padding: 50px 20px;
+      max-width: 1000px;
       margin: 0 auto;
     }
-    a {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 12px 24px;
-      background-color: #0077b6;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: 0.3s;
+
+    h2 {
+      text-align: center;
+      color: #2575fc;
+      margin-bottom: 30px;
     }
-    a:hover {
-      background-color: #023e8a;
+
+    .projects {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .project {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      padding: 20px;
+      width: 300px;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .project h3 {
+      margin-top: 0;
+      color: #6a11cb;
+    }
+
+    .project a {
+      text-decoration: none;
+      color: #2575fc;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      background-color: #f2f2f2;
+      color: #555;
     }
   </style>
 </head>
 <body>
-  <h1>Hi, I’m Paloma Fofana 👋</h1>
-  <p>I’m a student, swim coach, and leader passionate about athletics, inclusion, and helping others grow through movement and teamwork.</p>
-  <a href="mailto:youremail@example.com">Contact Me</a>
+
+<header>
+  <h1>Paloma F.</h1>
+  <p>Student & Developer | Projects Showcase</p>
+</header>
+
+<section>
+  <h2>Personal Projects</h2>
+  <div class="projects">
+    <div class="project">
+      <h3>Lane Swim App</h3>
+      <p>Flask-based web app to check lane swim schedules at local pools.</p>
+      <a href="https://github.com/palomafofana/lane-finder" target="_blank">View on GitHub</a>
+    </div>
+    <div class="project">
+      <h3>Color Matching App</h3>
+      <p>Interactive app that helps practice color matching skills.</p>
+      <a href="https://github.com/palomafofana/color-matching-app" target="_blank">View on GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 Paloma F.
+</footer>
+
 </body>
 </html>
