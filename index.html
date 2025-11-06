@@ -1,138 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Paloma Fofana | Portfolio</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #fdfdfd;
-      color: #333;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paloma Fofana | Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
 
-    header {
-      background: linear-gradient(90deg, #6a11cb, #2575fc);
-      color: white;
-      text-align: center;
-      padding: 80px 20px 60px 20px;
-    }
+        header {
+            background-color: #79A0A6;
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+        }
 
-    header h1 {
-      margin: 0;
-      font-size: 3em;
-    }
+        header h1 {
+            margin: 0;
+            font-size: 3em;
+        }
 
-    header p {
-      font-size: 1.2em;
-      margin-top: 15px;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+        header p {
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
 
-    section {
-      padding: 50px 20px;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
+        section {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
 
-    h2 {
-      text-align: center;
-      color: #2575fc;
-      margin-bottom: 30px;
-    }
+        h2 {
+            color: #79A0A6;
+            margin-bottom: 20px;
+        }
 
-    .projects {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-    }
+        .about-me, .contact {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
 
-    .project {
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      padding: 20px;
-      width: 300px;
-      text-align: center;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
 
-    .project:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    }
+        .project-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
 
-    .project h3 {
-      margin-top: 0;
-      color: #6a11cb;
-    }
+        .project-card h3 {
+            margin-top: 0;
+            color: #79A0A6;
+        }
 
-    .project a {
-      text-decoration: none;
-      color: #2575fc;
-      font-weight: bold;
-    }
+        .project-card p {
+            margin: 10px 0;
+        }
 
-    footer {
-      text-align: center;
-      padding: 30px 20px;
-      background-color: #f2f2f2;
-      color: #555;
-    }
+        .project-card a {
+            color: #79A0A6;
+            text-decoration: none;
+            font-weight: bold;
+        }
 
-    .contact a {
-      color: #2575fc;
-      text-decoration: none;
-      font-weight: bold;
-    }
+        .contact a {
+            color: #79A0A6;
+            text-decoration: none;
+            margin-right: 15px;
+        }
 
-    .contact a:hover {
-      text-decoration: underline;
-    }
-  </style>
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<header style="background-color: #79A0A6; color: white; text-align: center; padding: 80px 20px 60px 20px;">
-  <h1>Paloma Fofana</h1>
+<header>
+    <h1>Paloma Fofana</h1>
+    <p>Curious, Creative, and Leadership-Oriented | Software & Project Enthusiast</p>
 </header>
-  
-  <p>
-    I am a curious and creative leader who enjoys exploring new ideas, building projects, and learning continuously. 
-    I thrive when solving problems, collaborating with others, and turning concepts into reality.
-  </p>
 
-<section>
-  <h2>Side Projects</h2>
-  <div class="projects">
-    <div class="project">
-      <h3>Lane Swim App</h3>
-      <p>Flask-based web app to check lane swim schedules at local pools.</p>
-      <a href="https://github.com/palomafofana/lane-finder" target="_blank">View on GitHub</a>
+<section class="about-me">
+    <h2>About Me</h2>
+    <p>
+        Hello! I'm Paloma Fofana, a motivated and creative individual with a passion for technology, education, and leadership.  
+        I have experience leading teams, coaching youth in competitive swimming, and organizing school-wide activities as an executive on the Bloor Athletic Council.  
+        My curiosity drives me to learn new technologies and solve challenging problems, and I thrive in collaborative environments where I can make an impact.
+    </p>
+    <p>
+        Key highlights of my experience:
+        <ul>
+            <li>Precompetitive Swim Coach (2022–2025): Teaching fundamentals of swimming to youth of all skill levels.</li>
+            <li>Camp Counselor (Summer 2024): Leading programs, inclusive activities, and canoe trips.</li>
+            <li>Executive, Bloor Athletic Council: Organizing school-wide wellness and athletic events with a team of 30+ members.</li>
+            <li>Swim Team Captain: Creating practice plans, mentoring new swimmers, and fostering team engagement.</li>
+        </ul>
+    </p>
+</section>
+
+<section class="projects">
+    <h2>Side Projects</h2>
+
+    <div class="project-card">
+        <h3>Lane Swim App</h3>
+        <p>A web app that scrapes and displays lane swim schedules from Toronto pools, allowing users to filter by day and location.</p>
+        <a href="https://github.com/your-username/lane-swim-app" target="_blank">View on GitHub</a>
     </div>
-    <div class="project">
-      <h3>Color Matching App</h3>
-      <p>Interactive app that helps practice color matching skills.</p>
-      <a href="https://github.com/palomafofana/color-matching-app" target="_blank">View on GitHub</a>
+
+    <div class="project-card">
+        <h3>Colour Matching App</h3>
+        <p>A fun interactive project that allows users to test and improve their color-matching skills through a web interface.</p>
+        <a href="https://github.com/your-username/colour-matching-app" target="_blank">View on GitHub</a>
     </div>
-  </div>
 </section>
 
 <section class="contact">
-  <h2>Contact</h2>
-  <p>
-    Email: <a href="mailto:your.email@example.com">your.email@example.com</a><br>
-    GitHub: <a href="https://github.com/palomafofana" target="_blank">github.com/palomafofana</a>
-  </p>
+    <h2>Contact</h2>
+    <p>
+        <a href="mailto:paloma@example.com">Email</a>
+        <a href="https://www.linkedin.com/in/paloma-fofana" target="_blank">LinkedIn</a>
+        <a href="https://github.com/your-username" target="_blank">GitHub</a>
+    </p>
 </section>
 
 <footer>
-  &copy; 2025 Paloma Fofana
+    &copy; 2025 Paloma Fofana
 </footer>
 
 </body>
