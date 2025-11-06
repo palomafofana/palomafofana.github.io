@@ -11,12 +11,14 @@
             padding: 0;
             background-color: #f4f4f4;
             color: #333;
+            font-size: 18px;
+            line-height: 1.6;
         }
 
         header {
             background-color: #79A0A6;
             color: white;
-            padding: 50px 20px;
+            padding: 60px 20px;
             text-align: center;
         }
 
@@ -26,49 +28,63 @@
         }
 
         header p {
-            font-size: 1.2em;
-            margin-top: 10px;
+            font-size: 1.5em;
+            margin-top: 15px;
         }
 
         section {
             max-width: 1000px;
-            margin: 40px auto;
+            margin: 50px auto;
             padding: 0 20px;
         }
 
         h2 {
             color: #79A0A6;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            font-size: 2em;
         }
 
         .about-me, .contact {
             background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 30px 25px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+        }
+
+        .about-me ul {
+            list-style: disc;
+            padding-left: 20px;
+            font-size: 1.2em;
         }
 
         .projects {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
         }
 
         .project-card {
             background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+            transition: transform 0.2s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
         }
 
         .project-card h3 {
             margin-top: 0;
             color: #79A0A6;
+            font-size: 1.5em;
         }
 
         .project-card p {
-            margin: 10px 0;
+            margin: 15px 0;
+            font-size: 1.1em;
         }
 
         .project-card a {
@@ -80,18 +96,23 @@
         .contact a {
             color: #79A0A6;
             text-decoration: none;
-            margin-right: 15px;
+            margin-right: 20px;
+            font-size: 1.2em;
         }
 
         footer {
             text-align: center;
-            padding: 20px;
+            padding: 25px;
             color: #666;
+            font-size: 1em;
         }
 
         @media (max-width: 600px) {
             header h1 {
                 font-size: 2em;
+            }
+            header p {
+                font-size: 1.2em;
             }
         }
     </style>
@@ -106,19 +127,13 @@
 <section class="about-me">
     <h2>About Me</h2>
     <p>
-        Hello! I'm Paloma Fofana, a motivated and creative individual with a passion for technology, education, and leadership.  
-        I have experience leading teams, coaching youth in competitive swimming, and organizing school-wide activities as an executive on the Bloor Athletic Council.  
-        My curiosity drives me to learn new technologies and solve challenging problems, and I thrive in collaborative environments where I can make an impact.
+        Hi! I'm Paloma, passionate about learning, creativity, and helping others grow.  
+        My experience has helped me develop strong communication skills, organization, and adaptability.
     </p>
-    <p>
-        Key highlights of my experience:
-        <ul>
-            <li>Precompetitive Swim Coach (2022–2025): Teaching fundamentals of swimming to youth of all skill levels.</li>
-            <li>Camp Counselor (Summer 2024): Leading programs, inclusive activities, and canoe trips.</li>
-            <li>Executive, Bloor Athletic Council: Organizing school-wide wellness and athletic events with a team of 30+ members.</li>
-            <li>Swim Team Captain: Creating practice plans, mentoring new swimmers, and fostering team engagement.</li>
-        </ul>
-    </p>
+    <ul>
+        <li><strong>Precompetitive Swim Coach (2022–2025):</strong> Teaching fundamentals of competitive swimming to youth of all skill levels.</li>
+        <li><strong>Camp Counselor (Summer 2024):</strong> Leading inclusive programs, outdoor activities, and team-building exercises for campers.</li>
+    </ul>
 </section>
 
 <section class="projects">
