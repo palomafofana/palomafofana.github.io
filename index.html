@@ -4,163 +4,429 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paloma Fofana | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-            font-size: 18px;
-            line-height: 1.6;
+            box-sizing: border-box;
         }
 
+        :root {
+            --primary-blue: #4A90E2;
+            --light-blue: #6BA3D8;
+            --lighter-blue: #E8F2F9;
+            --white: #FFFFFF;
+            --off-white: #F8F9FA;
+            --text-dark: #2C3E50;
+            --text-light: #5A6C7D;
+            --shadow: 0 2px 12px rgba(74, 144, 226, 0.08);
+            --shadow-hover: 0 8px 24px rgba(74, 144, 226, 0.15);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--white);
+            color: var(--text-dark);
+            font-size: 16px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-blue);
+        }
+
+        /* Hero Section */
         header {
-            background-color: #79A0A6;
-            color: white;
-            padding: 60px 20px;
+            background: linear-gradient(135deg, var(--lighter-blue) 0%, var(--white) 100%);
+            padding: 10rem 2rem 8rem;
             text-align: center;
+            margin-top: 60px;
         }
 
         header h1 {
-            margin: 0;
-            font-size: 3em;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
         }
 
         header p {
-            font-size: 1.5em;
-            margin-top: 15px;
+            font-size: 1.25rem;
+            color: var(--text-light);
+            font-weight: 400;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
         section {
-            max-width: 1000px;
-            margin: 50px auto;
-            padding: 0 20px;
+            padding: 5rem 0;
         }
 
-        h2 {
-            color: #79A0A6;
-            margin-bottom: 25px;
-            font-size: 2em;
+        section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 3rem;
+            text-align: center;
+            letter-spacing: -0.02em;
         }
 
-        .about-me, .contact {
-            background-color: white;
-            padding: 30px 25px;
-            border-radius: 10px;
-            margin-bottom: 40px;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+        /* About Section */
+        .about-me {
+            background-color: var(--white);
         }
 
-        .about-me ul {
-            list-style: disc;
-            padding-left: 20px;
-            font-size: 1.2em;
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
         }
 
-        .projects {
+        .about-content p {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .about-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .about-content ul li {
+            padding: 1.25rem 0;
+            border-bottom: 1px solid var(--lighter-blue);
+            font-size: 1.05rem;
+            color: var(--text-light);
+        }
+
+        .about-content ul li:last-child {
+            border-bottom: none;
+        }
+
+        .about-content ul li strong {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        /* Projects Section */
+        .projects-section {
+            background-color: var(--off-white);
+        }
+
+        .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .project-card {
-            background-color: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
-            transition: transform 0.2s ease;
+            background-color: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--lighter-blue);
         }
 
         .project-card h3 {
-            margin-top: 0;
-            color: #79A0A6;
-            font-size: 1.5em;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
         }
 
         .project-card p {
-            margin: 15px 0;
-            font-size: 1.1em;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
         }
 
         .project-card a {
-            color: #79A0A6;
+            display: inline-block;
+            color: var(--primary-blue);
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
         }
 
-        .contact a {
-            color: #79A0A6;
-            text-decoration: none;
-            margin-right: 20px;
-            font-size: 1.2em;
+        .project-card a:hover {
+            color: var(--light-blue);
+            transform: translateX(4px);
         }
 
-        footer {
+        .project-card a::after {
+            content: " →";
+            margin-left: 0.5rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background-color: var(--white);
+        }
+
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
             text-align: center;
-            padding: 25px;
-            color: #666;
-            font-size: 1em;
+            background: var(--off-white);
+            padding: 3rem;
+            border-radius: 12px;
         }
 
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 2em;
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .contact-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 2rem;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(74, 144, 226, 0.2);
+        }
+
+        .contact-links a:hover {
+            background-color: var(--light-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--off-white);
+            text-align: center;
+            padding: 2.5rem;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            border-top: 1px solid var(--lighter-blue);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav .container {
+                flex-direction: column;
+                gap: 1rem;
             }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            header {
+                padding: 8rem 1.5rem 6rem;
+            }
+
+            header h1 {
+                font-size: 2.5rem;
+            }
+
             header p {
-                font-size: 1.2em;
+                font-size: 1.1rem;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 3rem 0;
+            }
+
+            .about-content,
+            .contact-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .contact-links a {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav ul {
+                font-size: 0.875rem;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
 
+<!-- Navigation -->
+<nav>
+    <div class="container">
+        <a href="#" class="logo">Paloma Fofana</a>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero Section -->
 <header>
     <h1>Paloma Fofana</h1>
     <p>Curious, Creative, and Leadership-Oriented | Software & Project Enthusiast</p>
 </header>
 
-<section class="about-me">
-    <h2>About Me</h2>
-    <p>
-        Hi! I'm Paloma, passionate about learning, creativity, and helping others grow.  
-        My experience has helped me develop strong communication skills, organization, and adaptability.
-    </p>
-    <ul>
-        <li><strong>Precompetitive Swim Coach (2022–2025):</strong> Teaching fundamentals of competitive swimming to youth of all skill levels.</li>
-        <li><strong>Camp Counselor (Summer 2024):</strong> Leading inclusive programs, outdoor activities, and team-building exercises for campers.</li>
-    </ul>
-</section>
-
-<section class="projects">
-    <h2>Side Projects</h2>
-
-    <div class="project-card">
-        <h3>Lane Swim App</h3>
-        <p>A web app that scrapes and displays lane swim schedules from Toronto pools, allowing users to filter by day and location.</p>
-        <a href="https://github.com/your-username/lane-swim-app" target="_blank">View on GitHub</a>
-    </div>
-
-    <div class="project-card">
-        <h3>Colour Matching App</h3>
-        <p>A fun interactive project that allows users to test and improve their color-matching skills through a web interface.</p>
-        <a href="https://github.com/your-username/colour-matching-app" target="_blank">View on GitHub</a>
+<!-- About Section -->
+<section id="about" class="about-me">
+    <div class="container">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <p>
+                Hi! I'm Paloma, passionate about learning, creativity, and helping others grow.  
+                My experience has helped me develop strong communication skills, organization, and adaptability.
+            </p>
+            <ul>
+                <li><strong>Precompetitive Swim Coach (2022–2025):</strong> Teaching fundamentals of competitive swimming to youth of all skill levels.</li>
+                <li><strong>Camp Counselor (Summer 2024):</strong> Leading inclusive programs, outdoor activities, and team-building exercises for campers.</li>
+            </ul>
+        </div>
     </div>
 </section>
 
-<section class="contact">
-    <h2>Contact</h2>
-    <p>
-        <a href="mailto:paloma@example.com">Email</a>
-        <a href="https://www.linkedin.com/in/paloma-fofana" target="_blank">LinkedIn</a>
-        <a href="https://github.com/your-username" target="_blank">GitHub</a>
-    </p>
+<!-- Projects Section -->
+<section id="projects" class="projects-section">
+    <div class="container">
+        <h2>Side Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>Lane Swim App</h3>
+                <p>A web app that scrapes and displays lane swim schedules from Toronto pools, allowing users to filter by day and location.</p>
+                <a href="https://github.com/your-username/lane-swim-app" target="_blank">View on GitHub</a>
+            </div>
+
+            <div class="project-card">
+                <h3>Colour Matching App</h3>
+                <p>A fun interactive project that allows users to test and improve their color-matching skills through a web interface.</p>
+                <a href="https://github.com/your-username/colour-matching-app" target="_blank">View on GitHub</a>
+            </div>
+        </div>
+    </div>
 </section>
 
+<!-- Contact Section -->
+<section id="contact" class="contact-section">
+    <div class="container">
+        <h2>Contact</h2>
+        <div class="contact-content">
+            <p>Let's connect! Feel free to reach out through any of these platforms.</p>
+            <div class="contact-links">
+                <a href="mailto:paloma@example.com">Email</a>
+                <a href="https://www.linkedin.com/in/paloma-fofana" target="_blank">LinkedIn</a>
+                <a href="https://github.com/your-username" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
 <footer>
     &copy; 2025 Paloma Fofana
 </footer>
