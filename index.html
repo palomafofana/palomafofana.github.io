@@ -1,66 +1,784 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 Not Found</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background: #fff;
-      color: #555;
-      text-align: center;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paloma Fofana - Software Engineering Student</title>
+    <style>
+        * {
+            margin:  0;
+            padding: 0;
+            box-sizing:  border-box;
+        }
 
-    .container {
-      margin-top: 15vh;
-    }
+        :root {
+            --primary:  #7bc6ff;
+            --secondary: #ffd4f4;
+            --accent: #81dbff;
+            --light-purple: #d1b2ff;
+            --light-green: #9bffc3;
+            --dark:  #2d3748;
+            --text: #4a5568;
+            --light-bg: #f7fafc;
+        }
 
-    h1 {
-      font-size: 90px;
-      margin: 0;
-      font-weight: 300;
-      color: #333;
-    }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            overflow-x: hidden;
+            background:  var(--light-bg);
+        }
 
-    h2 {
-      font-size: 28px;
-      margin-top: 10px;
-      font-weight: 300;
-      color: #666;
-    }
+        /* Canvas for fireworks */
+        #fireworks-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
 
-    p {
-      margin-top: 25px;
-      font-size: 16px;
-      color: #777;
-    }
+        /* Floating shapes background */
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width:  100%;
+            height: 100%;
+            pointer-events:  none;
+            z-index:  0;
+            overflow: hidden;
+        }
 
-    a {
-      color: #1a0dab;
-      text-decoration: none;
-    }
+        .shape {
+            position: absolute;
+            opacity: 0.15;
+            animation: float linear infinite;
+        }
 
-    a:hover {
-      text-decoration: underline;
-    }
+        .circle {
+            border-radius: 50%;
+        }
 
-    .code {
-      font-size: 14px;
-      margin-top: 30px;
-      color: #aaa;
-    }
-  </style>
+        .square {
+            border-radius: 8px;
+        }
+
+        .triangle {
+            width: 0;
+            height:  0;
+            background: transparent ! important;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background:  rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 2rem;
+            z-index:  1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap:  3rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom:  -5px;
+            left:  0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width:  800px;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            color: var(--dark);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .tagline {
+            font-size:  clamp(1rem, 2vw, 1.2rem);
+            color: var(--text);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size:  1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: rgb(254, 212, 212);
+            box-shadow: 0 4px 15px rgba(168, 218, 255, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(168, 218, 255, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgb(249, 201, 201);
+            color: var(--dark);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color:  rgb(255, 202, 202);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--dark);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip:  text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height:  1.8;
+            color: #4a5568;
+            margin-bottom: 2rem;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-tag {
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-radius: 20px;
+            color: #667eea;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-2px);
+            box-shadow:  0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary);
+        }
+
+        .project-card:nth-child(2) {
+            border-top-color: var(--secondary);
+        }
+
+        .project-card:nth-child(3) {
+            border-top-color: var(--light-purple);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow:  0 15px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-card h3 {
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .project-tech {
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .project-card p {
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        /* Experience Section */
+        .experience-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .experience-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 2rem;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+
+        .experience-item h3 {
+            color: var(--dark);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-meta {
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .experience-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .experience-item li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .experience-item li::before {
+            content:  '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius:  20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .skill-category h3 {
+            color: var(--dark);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, var(--light-bg), var(--accent));
+            color: var(--dark);
+            padding:  0.5rem 1rem;
+            border-radius: 50px;
+            font-size:  0.9rem;
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-card h3 {
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .contact-card a {
+            color: var(--primary);
+            text-decoration:  none;
+            font-weight:  500;
+            word-break: break-all;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            color: var(--text);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1.5rem;
+            }
+
+            section {
+                padding: 4rem 1rem;
+            }
+
+            .about-content {
+                padding: 2rem;
+            }
+
+            .experience-timeline {
+                padding-left: 1rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <div class="container">
-    <h1>404</h1>
-    <h2>Page Not Found</h2>
-    <p>The requested URL was not found on this server.</p>
-    <div class="code">HTTP 404 Error</div>
-  </div>
+    <!-- Fireworks Canvas -->
+    <canvas id="fireworks-canvas"></canvas>
+
+    <!-- Floating Shapes Background -->
+    <div class="floating-shapes" id="shapes-container"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Paloma Fofana</h1>
+            <div class="subtitle">Software Engineering Student</div>
+            <p class="tagline">
+                First-year Software Engineering student at the University of Waterloo with a passion for problem-solving and building meaningful projects.  Experienced in Python, Java, and web development, with a strong foundation in leadership through coaching, outdoor education, and team-based initiatives.  Currently seeking Spring 2026 co-op opportunities to apply technical skills and continue growing as a developer.
+            </p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">Get in Touch</a>
+                <a href="https://github.com/palomafofana" target="_blank" class="btn btn-secondary">View GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <p class="about-text">
+                Hi! I'm Paloma, a first-year Software Engineering student at the University of Waterloo, driven by a passion for creating meaningful solutions through code. I'm fascinated by how technology can solve real-world problems, whether it's building interactive web applications, developing algorithms, or designing user-friendly interfaces.
+            </p>
+            <p class="about-text">
+                I'm currently pursuing my Bachelor of Software Engineering (Sept. 2025 – Apr. 2030) as a recipient of the Ted Rogers Legacy Scholarship and President's Scholarship of Distinction. Based in Waterloo, Ontario, I'm actively seeking Spring 2026 co-op positions (available May – August 2026) where I can contribute to innovative projects and grow as a developer.
+            </p>
+            <p class="about-text">
+                Beyond coding, I'm passionate about outdoor education, coaching, and community building. I believe that the best software is built when technical skills meet empathy and collaboration.
+            </p>
+            
+            <h3 style="font-size: 1.5rem; margin: 2.5rem 0 1rem 0; color: #667eea;">Technical Skills</h3>
+            <div class="skills">
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">Java</span>
+                <span class="skill-tag">HTML/CSS</span>
+                <span class="skill-tag">React</span>
+                <span class="skill-tag">Node.js</span>
+                <span class="skill-tag">Git</span>
+                <span class="skill-tag">Leaflet.js</span>
+                <span class="skill-tag">GUI Development</span>
+                <span class="skill-tag">API Integration</span>
+                <span class="skill-tag">Object-Oriented Programming</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>Concrete Canoe Programming</h3>
+                <div class="project-tech">Python, JavaScript, HTML, CSS</div>
+                <p>Developed Python scripts to model and test canoe stability and performance metrics. Built and maintained the team website to showcase projects, competition results, and team initiatives. </p>
+            </div>
+            <div class="project-card">
+                <h3>Colour Sorting Game</h3>
+                <div class="project-tech">Java, GUI</div>
+                <p>Interactive Java GUI game inspired by I Love Hue that allows users to generate and unscramble grids of coloured tiles. Applied object-oriented programming principles to structure game logic and interface components.</p>
+            </div>
+            <div class="project-card">
+                <h3>Pools Interactive Map</h3>
+                <div class="project-tech">JavaScript, HTML, Leaflet.js</div>
+                <p>Built an interactive mapping interface using Leaflet.js to visualize real-time facility data from the Kitchener GeoJSON API. Implemented responsive UI with Postman-integrated workflow for API testing and validation.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2>Experience</h2>
+        <div class="experience-timeline">
+            <div class="experience-item">
+                <h3>Competitive Swim Coach</h3>
+                <div class="experience-meta">Toronto Swim Club | Nov.  2022 – June 2025</div>
+                <ul>
+                    <li>Led practices for two groups of 20+ young athletes, focusing on fundamentals, skill development, and confidence</li>
+                    <li>Organized and managed the group over the season, fostering teamwork, consistency, and athlete engagement</li>
+                </ul>
+            </div>
+            <div class="experience-item">
+                <h3>Overnight Camp Counsellor</h3>
+                <div class="experience-meta">Camp Pinecrest | 2024, 2025</div>
+                <ul>
+                    <li>Planned and led multi-day canoe trips for groups of eight campers, ensuring safety and outdoor skill development</li>
+                    <li>Built a positive camp culture through mentorship, outdoor education, and community-building initiatives</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Technical Skills</h2>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3>Languages</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">C</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">HTML</span>
+                    <span class="skill-tag">CSS</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Developer Tools</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">VS Code</span>
+                    <span class="skill-tag">Microsoft Office</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Libraries & Frameworks</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Leaflet.js</span>
+                    <span class="skill-tag">Java GUI</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Get in Touch</h2>
+        <p style="text-align: center; margin-bottom: 2rem; color: var(--text);">
+            I'm currently seeking Spring 2026 co-op opportunities.  Feel free to reach out! 
+        </p>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <h3>Email</h3>
+                <a href="mailto:pfofana@uwaterloo.ca">pfofana@uwaterloo.ca</a>
+            </div>
+            <div class="contact-card">
+                <h3>LinkedIn</h3>
+                <a href="https://linkedin.com/in/paloma-fofana" target="_blank">linkedin.com/in/paloma-fofana</a>
+            </div>
+            <div class="contact-card">
+                <h3>GitHub</h3>
+                <a href="https://github.com/palomafofana" target="_blank">github.com/palomafofana</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Paloma Fofana :-p.</p>
+    </footer>
+
+    <script>
+        // Floating Shapes
+        const shapesContainer = document.getElementById('shapes-container');
+        const colors = ['#a8daff', '#ffd4f4', '#c9f0ff', '#e5d4ff', '#d4ffe5'];
+        const shapes = ['circle', 'square', 'triangle'];
+
+        function createShape() {
+            const shape = document.createElement('div');
+            shape.classList.add('shape');
+            
+            const shapeType = shapes[Math.floor(Math.random() * shapes.length)];
+            shape.classList.add(shapeType);
+            
+            const size = Math.random() * 80 + 40;
+            shape.style.width = size + 'px';
+            shape.style.height = size + 'px';
+            
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            if (shapeType === 'triangle') {
+                shape.style. borderBottomColor = color;
+            } else {
+                shape.style.backgroundColor = color;
+            }
+            
+            shape.style.left = Math.random() * 100 + '%';
+            shape.style.animationDuration = (Math.random() * 15 + 10) + 's';
+            shape.style.animationDelay = Math.random() * 5 + 's';
+            
+            shapesContainer.appendChild(shape);
+            
+            setTimeout(() => {
+                shape.remove();
+            }, 25000);
+        }
+
+        for (let i = 0; i < 15; i++) {
+            createShape();
+        }
+        setInterval(createShape, 2000);
+
+        // Rainbow Fireworks
+        const canvas = document.getElementById('fireworks-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window. innerHeight;
+
+        window.addEventListener('resize', () => {
+            canvas.width = window. innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        let mouseX = canvas.width / 2;
+        let mouseY = canvas.height / 2;
+        let particles = [];
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            createFirework();
+        });
+
+        class Particle {
+            constructor(x, y, hue) {
+                this.x = x;
+                this.y = y;
+                this.hue = hue;
+                this.brightness = Math.random() * 30 + 50;
+                this.alpha = 1;
+                this. decay = Math.random() * 0.015 + 0.015;
+                this.velocity = {
+                    x: (Math. random() - 0.5) * 8,
+                    y: (Math.random() - 0.5) * 8
+                };
+                this.gravity = 0.08;
+                this.friction = 0.98;
+            }
+
+            update() {
+                this.velocity.x *= this.friction;
+                this.velocity.y *= this.friction;
+                this.velocity.y += this.gravity;
+                this.x += this.velocity.x;
+                this.y += this.velocity.y;
+                this.alpha -= this.decay;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.fillStyle = `hsl(${this.hue}, 100%, ${this.brightness}%)`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        function createFirework() {
+            const particleCount = 30;
+            const hue = Math.random() * 360;
+            
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle(mouseX, mouseY, hue));
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles = particles.filter(particle => particle.alpha > 0);
+
+            particles.forEach(particle => {
+                particle. update();
+                particle.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e. preventDefault();
+                const target = document.querySelector(this. getAttribute('href'));
+                if (target) {
+                    target. scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
